@@ -50,6 +50,11 @@
     font-size: 44px !important;
   }
 
+  /* Give the hyphen in "10-Jahres-Plan" a little more breathing room. */
+  .intro h2 {
+    letter-spacing: -1px !important;
+  }
+
   .contact h2 {
     font-size: 51px !important;
   }
