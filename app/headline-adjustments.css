@@ -1,40 +1,40 @@
-/* Main headline size adjustment: reduce primary headings by 2px. */
+/* Main headline size adjustment: reduce primary headings by 4px total. */
 .hero h1,
 .section h2 {
-  font-size: calc(clamp(52px, 6.6vw, 105px) - 2px);
+  font-size: calc(clamp(52px, 6.6vw, 105px) - 4px);
 }
 
 .intro h2 {
-  font-size: calc(clamp(50px, 5.8vw, 88px) - 2px);
+  font-size: calc(clamp(50px, 5.8vw, 88px) - 4px);
 }
 
 .features h2 {
-  font-size: calc(clamp(52px, 5.5vw, 82px) - 2px);
+  font-size: calc(clamp(52px, 5.5vw, 82px) - 4px);
 }
 
 .sectionHead h2 {
-  font-size: calc(clamp(52px, 5.6vw, 84px) - 2px);
+  font-size: calc(clamp(52px, 5.6vw, 84px) - 4px);
 }
 
 .finance h2 {
-  font-size: calc(clamp(52px, 5.4vw, 82px) - 2px);
+  font-size: calc(clamp(52px, 5.4vw, 82px) - 4px);
 }
 
 .location h2 {
-  font-size: calc(clamp(52px, 5.2vw, 80px) - 2px);
+  font-size: calc(clamp(52px, 5.2vw, 80px) - 4px);
 }
 
 .aboutPerson h2 {
-  font-size: calc(clamp(50px, 5vw, 78px) - 2px);
+  font-size: calc(clamp(50px, 5vw, 78px) - 4px);
 }
 
 .contact h2 {
-  font-size: calc(clamp(58px, 7vw, 105px) - 2px);
+  font-size: calc(clamp(58px, 7vw, 105px) - 4px);
 }
 
 @media (max-width: 560px) {
   .hero h1 {
-    font-size: 47px;
+    font-size: 45px;
   }
 
   .intro h2,
@@ -42,22 +42,22 @@
   .sectionHead h2,
   .finance h2,
   .location h2 {
-    font-size: 46px;
+    font-size: 44px;
   }
 
   .contact h2 {
-    font-size: 53px;
+    font-size: 51px;
   }
 
   main[lang="ru"] .hero h1 {
-    font-size: 40px;
+    font-size: 38px;
   }
 
   main[lang="ru"] .section h2 {
-    font-size: 41px;
+    font-size: 39px;
   }
 
   .aboutPerson h2 {
-    font-size: 44px;
+    font-size: 42px;
   }
 }
