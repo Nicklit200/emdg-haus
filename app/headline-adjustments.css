@@ -32,6 +32,11 @@
   font-size: calc(clamp(58px, 7vw, 105px) - 4px) !important;
 }
 
+/* Keep the kitchen price and euro sign on the same line. */
+.bonus h3 em {
+  white-space: nowrap;
+}
+
 @media (max-width: 560px) {
   .hero h1 {
     font-size: 45px !important;
