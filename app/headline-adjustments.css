@@ -55,6 +55,25 @@
     letter-spacing: -1px !important;
   }
 
+  /* Keep feature number and label on one row on mobile. */
+  .feature {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: baseline !important;
+    justify-content: flex-start !important;
+    gap: 14px !important;
+  }
+
+  .feature span {
+    flex: 0 0 auto;
+    min-width: 46px;
+  }
+
+  .feature b {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
   .contact h2 {
     font-size: 51px !important;
   }
