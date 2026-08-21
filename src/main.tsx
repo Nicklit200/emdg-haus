@@ -90,6 +90,19 @@ const syncSiteFixes = () => {
     const correctedName = "Меня зовут Анна Гиппиус (Анастасия Стрижкова).";
     if (aboutName.textContent !== correctedName) aboutName.textContent = correctedName;
   }
+
+  const main = document.querySelector<HTMLElement>("main");
+  if (main && !document.getElementById("legal-links")) {
+    const legal = document.createElement("div");
+    legal.id = "legal-links";
+    legal.style.cssText = "padding:18px 5vw 28px;border-top:1px solid rgba(255,255,255,.18);background:#111718;text-align:center;font-size:13px;";
+    const link = document.createElement("a");
+    link.href = "/impressum/";
+    link.textContent = "Impressum";
+    link.style.cssText = "color:#fff;text-decoration:underline;text-underline-offset:3px;";
+    legal.appendChild(link);
+    main.appendChild(legal);
+  }
 };
 
 document.addEventListener(
