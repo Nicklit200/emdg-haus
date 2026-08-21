@@ -46,6 +46,44 @@ const syncSiteFixes = () => {
     if (info[2] && info[2].textContent !== gardenText) info[2].textContent = gardenText;
     if (price && price.textContent !== data.price) price.textContent = data.price;
   });
+
+  const financeDescription = document.querySelector<HTMLElement>(".financeCopy > p:last-child");
+  if (financeDescription) {
+    const description = isRussian
+      ? "Примерный сценарий при стоимости покупки 449 000 €. Все данные ориентировочные и не заменяют финансовую или налоговую консультацию."
+      : "Ein mögliches Szenario bei einem Kaufpreis von 449.000 €. Alle Angaben sind unverbindlich und ersetzen keine Finanz- oder Steuerberatung.";
+    if (financeDescription.textContent !== description) financeDescription.textContent = description;
+  }
+
+  const financeCards = document.querySelectorAll<HTMLElement>(".numbers > div");
+  if (financeCards.length >= 4) {
+    const capitalValue = financeCards[0].querySelector<HTMLElement>("b");
+    const capitalSmall = financeCards[0].querySelector<HTMLElement>("small");
+    const monthlyValue = financeCards[1].querySelector<HTMLElement>("b");
+    const monthlySmall = financeCards[1].querySelector<HTMLElement>("small");
+    const rentValue = financeCards[2].querySelector<HTMLElement>("b");
+    const rentSmall = financeCards[2].querySelector<HTMLElement>("small");
+    const cashValue = financeCards[3].querySelector<HTMLElement>("b");
+    const cashSmall = financeCards[3].querySelector<HTMLElement>("small");
+
+    if (capitalValue && capitalValue.textContent !== "44.900 €") capitalValue.textContent = "44.900 €";
+    if (capitalSmall && capitalSmall.textContent !== "10 %") capitalSmall.textContent = "10 %";
+    if (monthlyValue && monthlyValue.textContent !== "ca. 1.660 €") monthlyValue.textContent = "ca. 1.660 €";
+    if (monthlySmall) {
+      const monthlyInfo = isRussian ? "3,93 % ставка · 1 % погашение" : "3,93 % Zins · 1 % Tilgung";
+      if (monthlySmall.textContent !== monthlyInfo) monthlySmall.textContent = monthlyInfo;
+    }
+    if (rentValue && rentValue.textContent !== "ca. 2.300 €") rentValue.textContent = "ca. 2.300 €";
+    if (rentSmall) {
+      const rentInfo = isRussian ? "в месяц, с мебелью*" : "pro Monat, möbliert*";
+      if (rentSmall.textContent !== rentInfo) rentSmall.textContent = rentInfo;
+    }
+    if (cashValue && cashValue.textContent !== "ca. +7.678 €") cashValue.textContent = "ca. +7.678 €";
+    if (cashSmall) {
+      const cashInfo = isRussian ? "в год до эксплуатационных расходов*" : "pro Jahr vor Bewirtschaftungskosten*";
+      if (cashSmall.textContent !== cashInfo) cashSmall.textContent = cashInfo;
+    }
+  }
 };
 
 document.addEventListener(
