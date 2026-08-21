@@ -5,6 +5,7 @@ import "../app/globals.css";
 import "../app/headline-adjustments.css";
 
 const whatsappNumber = "491747825045";
+const exactHeroImage = "https://lh3.googleusercontent.com/d/1eWfqL4iXkYBeb3qw2b2gwar0Gn7TfMm5";
 
 const homeData = [
   { area: "89,45 m²", garden: "172,90 m²", price: "449.000 €" },
@@ -32,8 +33,8 @@ const syncSiteFixes = () => {
 
   const heroImage = document.querySelector<HTMLImageElement>(".hero > img");
   if (heroImage) {
-    if (heroImage.getAttribute("src") !== "/images/drive/project-05.webp") {
-      heroImage.src = "/images/drive/project-05.webp";
+    if (heroImage.getAttribute("src") !== exactHeroImage) {
+      heroImage.src = exactHeroImage;
     }
     heroImage.style.objectFit = "cover";
     heroImage.style.objectPosition = "center center";
