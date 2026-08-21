@@ -6,23 +6,28 @@ import "../app/headline-adjustments.css";
 
 const whatsappNumber = "491747825045";
 
+const openWhatsApp = () => {
+  const isRussian = document.querySelector('main[lang="ru"]') !== null;
+  const message = isRussian
+    ? "Здравствуйте! Меня интересует проект EMDG Haus. Я хотела бы получить дополнительную информацию."
+    : "Hallo! Ich interessiere mich für das Projekt EMDG Haus und möchte weitere Informationen erhalten.";
+
+  window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+};
+
 document.addEventListener(
   "click",
   (event) => {
     const clickedElement = event.target as HTMLElement | null;
-    const consultationButton = clickedElement?.closest(".contact .button.orange");
+    const actionElement = clickedElement?.closest(
+      ".button, .navCta, .unit a",
+    );
 
-    if (!(consultationButton instanceof HTMLButtonElement)) return;
+    if (!(actionElement instanceof HTMLElement)) return;
 
     event.preventDefault();
     event.stopPropagation();
-
-    const isRussian = document.querySelector('main[lang="ru"]') !== null;
-    const message = isRussian
-      ? "Здравствуйте! Меня интересует проект EMDG Haus. Я хотела бы получить персональную консультацию."
-      : "Hallo! Ich interessiere mich für das Projekt EMDG Haus und möchte eine persönliche Beratung.";
-
-    window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    openWhatsApp();
   },
   true,
 );
