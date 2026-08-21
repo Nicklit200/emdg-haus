@@ -93,23 +93,31 @@ const syncSiteFixes = () => {
 
   document.getElementById("legal-links")?.remove();
 
-  if (!document.getElementById("footer-impressum")) {
-    const projectLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("a")).filter((link) => {
-      const text = link.textContent?.trim().toUpperCase();
-      return text === "PROJEKT" || text === "ПРОЕКТ";
-    });
-    const footerProjectLink = projectLinks[projectLinks.length - 1];
-    const footerNav = footerProjectLink?.parentElement;
+  const projectLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("a")).filter((link) => {
+    const text = link.textContent?.trim().toUpperCase();
+    return text === "PROJEKT" || text === "ПРОЕКТ";
+  });
+  const footerProjectLink = projectLinks[projectLinks.length - 1];
+  const footerNav = footerProjectLink?.parentElement;
 
-    if (footerNav) {
-      const impressum = document.createElement("a");
-      impressum.id = "footer-impressum";
-      impressum.href = "/impressum/";
-      impressum.textContent = "IMPRESSUM";
-      impressum.style.color = "inherit";
-      impressum.style.textDecoration = "none";
-      footerNav.appendChild(impressum);
-    }
+  if (footerNav && !document.getElementById("footer-impressum")) {
+    const impressum = document.createElement("a");
+    impressum.id = "footer-impressum";
+    impressum.href = "/impressum/";
+    impressum.textContent = "IMPRESSUM";
+    impressum.style.color = "inherit";
+    impressum.style.textDecoration = "none";
+    footerNav.appendChild(impressum);
+  }
+
+  if (footerNav && !document.getElementById("footer-datenschutz")) {
+    const datenschutz = document.createElement("a");
+    datenschutz.id = "footer-datenschutz";
+    datenschutz.href = "/datenschutz/";
+    datenschutz.textContent = "DATENSCHUTZ";
+    datenschutz.style.color = "inherit";
+    datenschutz.style.textDecoration = "none";
+    footerNav.appendChild(datenschutz);
   }
 };
 
