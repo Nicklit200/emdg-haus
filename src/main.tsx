@@ -91,17 +91,25 @@ const syncSiteFixes = () => {
     if (aboutName.textContent !== correctedName) aboutName.textContent = correctedName;
   }
 
-  const main = document.querySelector<HTMLElement>("main");
-  if (main && !document.getElementById("legal-links")) {
-    const legal = document.createElement("div");
-    legal.id = "legal-links";
-    legal.style.cssText = "padding:18px 5vw 28px;border-top:1px solid rgba(255,255,255,.18);background:#111718;text-align:center;font-size:13px;";
-    const link = document.createElement("a");
-    link.href = "/impressum/";
-    link.textContent = "Impressum";
-    link.style.cssText = "color:#fff;text-decoration:underline;text-underline-offset:3px;";
-    legal.appendChild(link);
-    main.appendChild(legal);
+  document.getElementById("legal-links")?.remove();
+
+  if (!document.getElementById("footer-impressum")) {
+    const projectLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("a")).filter((link) => {
+      const text = link.textContent?.trim().toUpperCase();
+      return text === "PROJEKT" || text === "ПРОЕКТ";
+    });
+    const footerProjectLink = projectLinks[projectLinks.length - 1];
+    const footerNav = footerProjectLink?.parentElement;
+
+    if (footerNav) {
+      const impressum = document.createElement("a");
+      impressum.id = "footer-impressum";
+      impressum.href = "/impressum/";
+      impressum.textContent = "IMPRESSUM";
+      impressum.style.color = "inherit";
+      impressum.style.textDecoration = "none";
+      footerNav.appendChild(impressum);
+    }
   }
 };
 
