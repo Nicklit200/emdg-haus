@@ -31,8 +31,12 @@ const syncSiteFixes = () => {
   }
 
   const heroImage = document.querySelector<HTMLImageElement>(".hero > img");
-  if (heroImage && heroImage.getAttribute("src") !== "/images/drive/project-06.webp") {
-    heroImage.src = "/images/drive/project-06.webp";
+  if (heroImage) {
+    if (heroImage.getAttribute("src") !== "/images/drive/project-05.webp") {
+      heroImage.src = "/images/drive/project-05.webp";
+    }
+    heroImage.style.objectFit = "contain";
+    heroImage.style.objectPosition = "center center";
   }
 
   const isRussian = russianMain !== null;
