@@ -6,6 +6,13 @@ import "../app/headline-adjustments.css";
 
 const whatsappNumber = "491747825045";
 
+const homeData = [
+  { area: "89,45 m²", garden: "172,90 m²", price: "449.000 €" },
+  { area: "89,73 m²", garden: "144,40 m²", price: "439.000 €" },
+  { area: "99,27 m²", garden: "143,25 m²", price: "459.000 €" },
+  { area: "99,24 m²", garden: "269,40 m²", price: "479.000 €" },
+];
+
 const openWhatsApp = () => {
   const isRussian = document.querySelector('main[lang="ru"]') !== null;
   const message = isRussian
@@ -15,13 +22,29 @@ const openWhatsApp = () => {
   window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 };
 
-const removeRussianIntroPeriod = () => {
+const syncSiteFixes = () => {
   const russianMain = document.querySelector('main[lang="ru"]');
   const introAccent = russianMain?.querySelector('.intro h2 em');
 
   if (introAccent && introAccent.textContent?.endsWith('.')) {
     introAccent.textContent = introAccent.textContent.slice(0, -1);
   }
+
+  const isRussian = russianMain !== null;
+  const gardenLabel = isRussian ? "сад" : "Garten";
+  const units = document.querySelectorAll<HTMLElement>(".unitGrid .unit");
+
+  units.forEach((unit, index) => {
+    const data = homeData[index];
+    if (!data) return;
+
+    const info = unit.querySelectorAll<HTMLElement>(".unitInfo span");
+    const price = unit.querySelector<HTMLElement>(":scope > b");
+
+    if (info[1]) info[1].textContent = data.area;
+    if (info[2]) info[2].textContent = `${data.garden} ${gardenLabel}`;
+    if (price) price.textContent = data.price;
+  });
 };
 
 document.addEventListener(
@@ -49,6 +72,6 @@ ReactDOM.createRoot(rootElement).render(
   </React.StrictMode>,
 );
 
-const observer = new MutationObserver(removeRussianIntroPeriod);
+const observer = new MutationObserver(syncSiteFixes);
 observer.observe(rootElement, { childList: true, subtree: true });
-removeRussianIntroPeriod();
+syncSiteFixes();
