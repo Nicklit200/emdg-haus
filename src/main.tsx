@@ -84,6 +84,12 @@ const syncSiteFixes = () => {
       if (cashSmall.textContent !== cashInfo) cashSmall.textContent = cashInfo;
     }
   }
+
+  const aboutName = russianMain?.querySelector<HTMLElement>(".aboutName strong");
+  if (aboutName) {
+    const correctedName = "Меня зовут Анна Гиппиус (Анастасия Стрижкова).";
+    if (aboutName.textContent !== correctedName) aboutName.textContent = correctedName;
+  }
 };
 
 document.addEventListener(
