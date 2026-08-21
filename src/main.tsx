@@ -65,13 +65,6 @@ document.addEventListener(
   true,
 );
 
-document.addEventListener("click", (event) => {
-  const clickedElement = event.target as HTMLElement | null;
-  if (clickedElement?.closest(".langSwitch button")) {
-    window.setTimeout(syncSiteFixes, 0);
-  }
-});
-
 const rootElement = document.getElementById("root")!;
 
 ReactDOM.createRoot(rootElement).render(
@@ -80,4 +73,13 @@ ReactDOM.createRoot(rootElement).render(
   </React.StrictMode>,
 );
 
-window.setTimeout(syncSiteFixes, 0);
+const siteObserver = new MutationObserver(syncSiteFixes);
+siteObserver.observe(rootElement, {
+  childList: true,
+  subtree: true,
+  characterData: true,
+});
+
+window.setTimeout(syncSiteFixes, 50);
+window.setTimeout(syncSiteFixes, 250);
+window.setTimeout(syncSiteFixes, 1000);
