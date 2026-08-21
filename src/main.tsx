@@ -15,6 +15,15 @@ const openWhatsApp = () => {
   window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 };
 
+const removeRussianIntroPeriod = () => {
+  const russianMain = document.querySelector('main[lang="ru"]');
+  const introAccent = russianMain?.querySelector('.intro h2 em');
+
+  if (introAccent && introAccent.textContent?.endsWith('.')) {
+    introAccent.textContent = introAccent.textContent.slice(0, -1);
+  }
+};
+
 document.addEventListener(
   "click",
   (event) => {
@@ -32,8 +41,14 @@ document.addEventListener(
   true,
 );
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+const rootElement = document.getElementById("root")!;
+
+ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <Home />
   </React.StrictMode>,
 );
+
+const observer = new MutationObserver(removeRussianIntroPeriod);
+observer.observe(rootElement, { childList: true, subtree: true });
+removeRussianIntroPeriod();
