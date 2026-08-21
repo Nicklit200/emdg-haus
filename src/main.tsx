@@ -30,6 +30,11 @@ const syncSiteFixes = () => {
     introAccent.textContent = introAccent.textContent.slice(0, -1);
   }
 
+  const heroImage = document.querySelector<HTMLImageElement>(".hero > img");
+  if (heroImage && heroImage.getAttribute("src") !== "/images/drive/project-06.webp") {
+    heroImage.src = "/images/drive/project-06.webp";
+  }
+
   const isRussian = russianMain !== null;
   const gardenLabel = isRussian ? "сад" : "Garten";
   const units = document.querySelectorAll<HTMLElement>(".unitGrid .unit");
