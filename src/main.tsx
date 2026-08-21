@@ -40,10 +40,11 @@ const syncSiteFixes = () => {
 
     const info = unit.querySelectorAll<HTMLElement>(".unitInfo span");
     const price = unit.querySelector<HTMLElement>(":scope > b");
+    const gardenText = `${data.garden} ${gardenLabel}`;
 
-    if (info[1]) info[1].textContent = data.area;
-    if (info[2]) info[2].textContent = `${data.garden} ${gardenLabel}`;
-    if (price) price.textContent = data.price;
+    if (info[1] && info[1].textContent !== data.area) info[1].textContent = data.area;
+    if (info[2] && info[2].textContent !== gardenText) info[2].textContent = gardenText;
+    if (price && price.textContent !== data.price) price.textContent = data.price;
   });
 };
 
@@ -64,6 +65,13 @@ document.addEventListener(
   true,
 );
 
+document.addEventListener("click", (event) => {
+  const clickedElement = event.target as HTMLElement | null;
+  if (clickedElement?.closest(".langSwitch button")) {
+    window.setTimeout(syncSiteFixes, 0);
+  }
+});
+
 const rootElement = document.getElementById("root")!;
 
 ReactDOM.createRoot(rootElement).render(
@@ -72,6 +80,4 @@ ReactDOM.createRoot(rootElement).render(
   </React.StrictMode>,
 );
 
-const observer = new MutationObserver(syncSiteFixes);
-observer.observe(rootElement, { childList: true, subtree: true });
-syncSiteFixes();
+window.setTimeout(syncSiteFixes, 0);
